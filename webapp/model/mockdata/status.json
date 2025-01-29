@@ -1,0 +1,20 @@
+{
+	"statusList": [
+		{
+		   "key":"01",
+		   "text":"To do"
+		},
+		{
+		   "key":"02",
+		   "text":"In Progress"
+		},
+		{
+		   "key":"03",
+		   "text":"Done"
+		},
+		{
+		   "key":"04",
+		   "text":"Returned"
+		}
+	 ]
+}
