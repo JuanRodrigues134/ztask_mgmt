@@ -1,0 +1,80 @@
+<mvc:View
+	controllerName="com.my.zfapctaskmgmt.controller.View1"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns="sap.m">
+	<Page
+		id="page"
+		title="{i18n>title}"
+		titleAlignment="Center">
+		<content>
+			<Table
+				id="sIdTasksTable"
+				items="{path: 'taskModel>/tasks', sorter: { path: 'taskModel>creationDate', descending: true}}"
+				alternateRowColors="true"
+				mode="MultiSelect">
+				<headerToolbar>
+					<Toolbar>
+						<Title text="{i18n>taskTitle} ({=${taskModel>/tasks}.length})"/>
+					</Toolbar>
+				</headerToolbar>
+				<noData>
+					<IllustratedMessage
+						illustrationType="sapIllus-NoTasks_v1"
+						title="{i18n>noTasksFound}"
+						description="{i18n>noTasksFoundDesc}"/>
+				</noData>
+				<columns>
+					<Column hAlign="Center">
+						<Text text="{i18n>taskName}"/>
+					</Column>
+					<Column hAlign="Center">
+						<Text text="{i18n>taskDescription}"/>
+					</Column>
+					<Column hAlign="Center">
+						<Text text="{i18n>taskPriority}"/>
+					</Column>
+					<Column hAlign="Center">
+						<Text text="{i18n>taskStatus}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem
+						type="Navigation"
+						press="onPressNavigateColumnListItem">
+						<cells>
+							<Text text="{taskModel>taskName}"/>
+							<Text text="{taskModel>taskDescription}"/>
+							<Text text="{taskModel>taskPriority}"/>
+							<ObjectStatus
+								text="{taskModel>taskStatus}"
+								state="{
+									path: 'taskModel>taskStatusKey',
+									formatter: '.formatter.formatPriorityStatus'
+								}"
+								icon="{
+									path: 'taskModel>taskStatusKey',
+									formatter: '.formatter.formatPriorityStatusIcon'
+								}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button
+					text="{i18n>deleteTask}"
+					press="onDeleteTask"
+					icon="sap-icon://delete"
+					type="Reject"/>
+				<Button
+					text="{i18n>createTask}"
+					press="onPressCreateTask"
+					icon="sap-icon://task"
+					type="Accept"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

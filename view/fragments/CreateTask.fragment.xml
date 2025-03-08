@@ -1,0 +1,65 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+	xmlns:layout="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+	<Dialog
+		id="sIdDlgCreateTask"
+		title="{i18n>createTask}">
+		<f:SimpleForm
+			layout="ResponsiveGridLayout"
+			labelSpanL="12"
+			labelSpanM="12"
+			labelSpanS="12"
+			emptySpanL="0"
+			emptySpanM="0"
+			emptySpanS="0"
+			columnsL="2"
+			columnsM="1">
+			<Toolbar>
+				<c:Icon src="sap-icon://task"/>
+				<Title text="{i18n>task}"/>
+			</Toolbar>
+			<f:content>
+				<Label text="{i18n>taskName}"/>
+				<Input
+					id="sIdTaskNameCreate"
+					value="{taskModel>/task/taskName}"
+					width="20rem"
+					placeholder="Name"/>
+				<Label text="{i18n>taskDescription}"/>
+				<TextArea
+					id="sIdTaskDescriptionCreate"
+					value="{taskModel>/task/taskDescription}"
+					width="20rem"
+					placeholder="Description"/>
+				<Label text="{i18n>taskPriority}"/>
+				<Select items="{priority>/priorities}" selectedKey="{taskModel>/task/taskPriorityKey}" >
+					<c:Item
+						key="{priority>key}"
+						text="{priority>text}"/>
+				</Select>
+				<Label text="{i18n>taskStatus}"/>
+				<Select
+					enabled="false"
+					selectedKey="{taskModel>/task/taskStatusKey}"
+					items="{status>/statusList}">
+					<c:Item
+						key="{status>key}"
+						text="{status>text}"/>
+				</Select>
+			</f:content>
+		</f:SimpleForm>
+		<beginButton>
+			<Button
+				text="{i18n>close}"
+				press="onPressCloseCreate"/>
+		</beginButton>
+		<endButton>
+			<Button
+				text="{i18n>create}"
+				press="onPressCreate"
+				type="Accept"/>
+		</endButton>
+	</Dialog>
+</c:FragmentDefinition>
